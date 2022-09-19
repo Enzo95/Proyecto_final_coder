@@ -4,10 +4,12 @@
 
 {% block contenidoQueCambia %}
 
+<div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+
     <p>Nombre de la Receta: <h1><i>{{receta.nombre}}</i></h1></p>
     <p>Tipo: <h4><i>{{receta.tipo}}</i></h4></p>
     <p>Ingredientes: <h5><i>{{receta.ingredientes}}</i></h5></p>
     <p>Procedimiento: <h6><i>{{receta.procedimiento}}</i></h6></p>
     <p> <a href="{% url 'Lista Receta' %}">Regresar</a></p>
-
+</div>
 {% endblock %}

@@ -12,4 +12,7 @@ urlpatterns = [
     path(r'^nuevo$', views.RecetaCreacion.as_view(),name= 'Nueva Receta'),
     path(r'^editar/(?P<pk>\d+)$', views.RecetaUpdate.as_view(),name= 'Editar Receta'),
     path(r'^borrar/(?P<pk>\d+)$', views.RecetaDelete.as_view(), name='Eliminar Receta'),
+    path('login', views.login_request, name='Login'),
+    path('register', views.register, name='Register'),
+    path('logout', LogoutView.as_view(template_name='Appblog/logout.html'), name='Logout'),
 ]
