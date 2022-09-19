@@ -1,0 +1,29 @@
+{% extends 'Appblog/inicio.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h1>Recetas de LA DELICIA</h1>
+<ul>
+    {% if object_list %}
+
+        
+        {% for receta in object_list %}
+
+            <li>
+                <p>Nombre: {{receta.nombre}}</p>
+                <p>
+                    <a href="{% url 'Detalle Receta' receta.id %}">Ver</a>
+                    <a href="{% url 'Editar Receta' receta.id %}">Editar</a>
+                    <a href="{% url 'Eliminar Receta' receta.id %}">Borrar</a>
+                </p>
+            </li>
+        {% endfor %}
+
+    {% else %}
+        <p class="text-black-75 mb-5">Aun no hay recetas creadas</p>
+    {% endif %}
+        <a href="{% url 'Nueva Receta' %}">Agregar Receta Nueva</a>
+</ul>
+{% endblock %}

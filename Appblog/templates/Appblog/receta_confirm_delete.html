@@ -1,0 +1,14 @@
+{% extends 'Appblog/inicio.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<form method="post"> 
+    {% csrf_token %}
+    ¿Estas seguro que deseas eliminar la receta "{{ object.nombre }}"?
+    <input type="submit" value="Sí"/>
+
+</form>
+
+{% endblock %}
