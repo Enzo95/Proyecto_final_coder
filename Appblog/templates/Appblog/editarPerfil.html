@@ -3,15 +3,22 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
+<h1>{{usuario}}</h1>
 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+
     <form action="" method="POST">
         {% csrf_token %} 
+
         <table>
+
         {{ miFormulario.as_tabla}}
+
         </table>
+
         <input type="submit", value="Modificar">
+        
     </form>
+
 </div>
 
 

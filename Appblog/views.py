@@ -4,7 +4,7 @@ from django.views.generic import ListView, detail, edit
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from Appblog.forms import UserRegisterForm
+from Appblog.forms import UserRegisterForm, UserEditForm
 
 @login_required
 def inicio(request):
@@ -71,7 +71,6 @@ def register(request):
 
     if request.method == 'POST':
 
-        #form = UserCreationForm(request.POST)
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
@@ -81,7 +80,33 @@ def register(request):
             return render(request,"Appblog/inicio.html",{"mensaje":"Usuario Creado :)"})
 
     else:
-        #form = UserCreationForm()
         form = UserRegisterForm()
 
     return render(request,"Appblog/registro.html", {"form":form})
+
+@login_required
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == 'POST':
+        print("Entra 1")
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+            print("Entra 2")
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+
+            usuario.save()
+
+            return render(request, "Appblog/inicio.html")
+
+    else:
+        print("Entra 3")
+        miFormulario = UserEditForm(initial={'email': usuario.email})
+
+    return render(request, "Appblog/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
